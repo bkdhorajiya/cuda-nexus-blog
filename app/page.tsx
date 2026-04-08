@@ -8,10 +8,10 @@ export default function Home() {
     <div>
       <section className="hero-section container" style={{ paddingBottom: '40px' }}>
         <h1 className="hero-title">
-          Master Modern GPU Programming
+          Diving into GPU Programming
         </h1>
         <p className="hero-subtitle" style={{ marginBottom: 0 }}>
-          In-depth explanations, performance optimization techniques, and sample code breakdowns for NVIDIA CUDA. Let's make massive parallel processing accessible.
+          Documenting my journey through NVIDIA CUDA. Join me as I explore performance optimizations, break down interesting sample codes, and learn the art of massive parallel processing.
         </p>
       </section>
 
