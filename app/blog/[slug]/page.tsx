@@ -4,7 +4,6 @@ import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import Comments from '../../components/Comments';
 
 export async function generateStaticParams() {
   const paths = getAllPostIds();
@@ -87,8 +86,6 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           {postData.content}
         </ReactMarkdown>
       </div>
-
-      <Comments />
     </article>
   );
 }
