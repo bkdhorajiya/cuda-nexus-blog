@@ -2,6 +2,7 @@
 title: "Understanding CUDA Device Query: Inspecting GPU Capabilities"
 date: "2026-04-08"
 excerpt: "Before writing high-performance CUDA kernels, you need to understand the hardware. Let's break down the classic deviceQuery sample."
+tags: ["Architecture", "Hardware", "API"]
 ---
 
 Before you write your first massive parallel kernel, it is critical to understand the environment your code will execute in. Different NVIDIA GPUs have vastly different amounts of memory, maximum thread counts, and streaming multiprocessors (SMs). 

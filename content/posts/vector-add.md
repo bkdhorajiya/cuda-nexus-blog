@@ -2,6 +2,7 @@
 title: "Vector Addition: The \"Hello World\" of CUDA"
 date: "2026-05-15"
 excerpt: "Start your journey into GPU programming by dissecting the fundamental vectorAdd sample. Understand thread blocks, grids, and global memory allocation."
+tags: ["Basics", "Kernel"]
 ---
 
 If you are learning C++, your first program is `printf("Hello World")`. In the world of massive parallel programming with NVIDIA GPUs, the equivalent is **Vector Addition**.

@@ -13,11 +13,16 @@ export function getSortedPostsData() {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const matterResult = matter(fileContents);
 
+    const contentText = matterResult.content || '';
+    const readingTime = Math.max(1, Math.ceil(contentText.split(/\s+/).length / 200));
+
     return {
       id,
       title: matterResult.data.title as string,
       date: matterResult.data.date as string,
       excerpt: matterResult.data.excerpt as string,
+      tags: matterResult.data.tags || [],
+      readingTime,
       ...(matterResult.data as { [key: string]: any })
     };
   });
@@ -53,6 +58,8 @@ export async function getPostData(slug: string) {
     title: matterResult.data.title as string,
     date: matterResult.data.date as string,
     excerpt: matterResult.data.excerpt as string,
+    tags: matterResult.data.tags || [],
+    readingTime: Math.max(1, Math.ceil((matterResult.content || '').split(/\s+/).length / 200)),
     ...(matterResult.data as { [key: string]: any })
   };
 }

@@ -24,7 +24,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       </Link>
       
       <header style={{ marginBottom: '48px' }}>
-        <span className="post-card-date">{new Date(postData.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <span className="post-card-date">{new Date(postData.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+          <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)' }}>⏱ {postData.readingTime} min read</span>
+        </div>
         <h1 style={{ fontSize: '3rem', margin: '16px 0 24px', lineHeight: 1.2 }}>
           {postData.title}
         </h1>
