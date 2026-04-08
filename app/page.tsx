@@ -1,6 +1,9 @@
 import Link from 'next/link';
+import { getSortedPostsData } from '../lib/posts';
 
 export default function Home() {
+  const allPostsData = getSortedPostsData();
+
   return (
     <div>
       <section className="hero-section container">
@@ -11,9 +14,11 @@ export default function Home() {
           In-depth explanations, performance optimization techniques, and sample code breakdowns for NVIDIA CUDA. Let's make massive parallel processing accessible.
         </p>
         <div style={{ display: 'flex', gap: '16px' }}>
-          <Link href="/blog/vector-add" className="btn-primary">
-            Read the Articles
-          </Link>
+          {allPostsData.length > 0 && (
+            <Link href={`/blog/${allPostsData[0].id}`} className="btn-primary">
+              Read the Articles
+            </Link>
+          )}
           <a href="https://github.com/nvidia/cuda-samples" target="_blank" rel="noopener noreferrer" className="btn-secondary">
             CUDA Samples GitHub
           </a>
@@ -26,38 +31,23 @@ export default function Home() {
         </div>
         
         <div className="post-grid">
-          <div className="glass-panel post-card">
-            <span className="post-card-date">May 15, 2026</span>
-            <h3 className="post-card-title">Vector Addition: The "Hello World" of CUDA</h3>
-            <p className="post-card-excerpt">
-              Start your journey into GPU programming by dissecting the fundamental vectorAdd sample. Understand thread blocks, grids, and global memory allocation.
-            </p>
-            <Link href="/blog/vector-add" className="post-card-link">
-              Read Article <span style={{ color: 'var(--accent)' }}>→</span>
-            </Link>
-          </div>
+          {allPostsData.map(({ id, date, title, excerpt }) => (
+            <div className="glass-panel post-card" key={id}>
+              <span className="post-card-date">{new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+              <h3 className="post-card-title">{title}</h3>
+              <p className="post-card-excerpt">{excerpt}</p>
+              <Link href={`/blog/${id}`} className="post-card-link">
+                Read Article <span style={{ color: 'var(--accent)' }}>→</span>
+              </Link>
+            </div>
+          ))}
 
-          <div className="glass-panel post-card">
-            <span className="post-card-date">May 02, 2026</span>
-            <h3 className="post-card-title">Optimizing Matrix Multiplication</h3>
-            <p className="post-card-excerpt">
-              A deep dive into shared memory tiling. Learn how to drastically reduce global memory bandwidth requirements by leveraging fast on-chip memory.
-            </p>
-            <Link href="/blog/matrix-multiplication" className="post-card-link" style={{ pointerEvents: 'none', opacity: 0.5 }}>
-              Coming Soon
-            </Link>
-          </div>
-
-          <div className="glass-panel post-card">
-            <span className="post-card-date">April 28, 2026</span>
-            <h3 className="post-card-title">Understanding Unified Memory</h3>
-            <p className="post-card-excerpt">
-              Drop the complex cudaMemcpy calls. Let's explore how Unified Memory simplifies memory management and when you should strictly avoid it.
-            </p>
-            <Link href="/blog/unified-memory" className="post-card-link" style={{ pointerEvents: 'none', opacity: 0.5 }}>
-              Coming Soon
-            </Link>
-          </div>
+          {allPostsData.length === 0 && (
+            <div className="glass-panel post-card" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>
+              <h3 style={{ marginBottom: '16px' }}>No articles yet.</h3>
+              <p style={{ color: 'var(--text-secondary)' }}>Write and publish your first post using the editor!</p>
+            </div>
+          )}
         </div>
       </section>
     </div>
