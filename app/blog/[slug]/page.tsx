@@ -3,10 +3,31 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
   const paths = getAllPostIds();
   return paths; 
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const postData = await getPostData(resolvedParams.slug);
+  
+  if (!postData) {
+    return { title: 'Post Not Found' };
+  }
+
+  return {
+    title: `${postData.title} | CUDA Nexus`,
+    description: postData.excerpt,
+    keywords: postData.tags?.join(', '),
+    openGraph: {
+      title: postData.title,
+      description: postData.excerpt,
+      type: 'article',
+    }
+  };
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
