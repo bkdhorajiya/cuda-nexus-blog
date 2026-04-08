@@ -40,7 +40,7 @@ export default function RootLayout({
             </a>
             <nav className="nav-links">
               <a href="/">Home</a>
-              <a href="/editor" style={{ color: 'var(--accent)', fontWeight: 600 }}>+ Write</a>
+              <a href="/about">About</a>
             </nav>
           </div>
         </header>
