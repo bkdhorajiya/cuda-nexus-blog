@@ -11,7 +11,7 @@ export default function Home() {
           Diving into GPU Programming
         </h1>
         <p className="hero-subtitle" style={{ marginBottom: 0 }}>
-          Welcome to my learning log! As a fresher getting started with NVIDIA CUDA, I'm documenting my journey through GPU programming, deciphering interesting code samples, and sharing whatever I learn along the way.
+          Exploring NVIDIA CUDA, uncovering massive parallel processing techniques, and deciphering interesting code samples.
         </p>
       </section>
 
